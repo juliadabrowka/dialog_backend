@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,7 +42,7 @@ INSTALLED_APPS = [
     'djoser',
     'corsheaders',
     'collage_app',
-
+    'django_heroku'
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -63,7 +65,7 @@ ROOT_URLCONF = 'collage.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'dist')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,7 +130,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'var/static_root/'
-STATICFILES_DIRS = ['static']
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'dist/static'),
+    ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
@@ -137,3 +141,5 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+django_heroku.settings(locals())
