@@ -1,12 +1,18 @@
 from django.db import models
 
 
+
 class Serie(models.Model):
     title = models.CharField(max_length=500)
     description = models.TextField()
     slug = models.SlugField(max_length=100, blank=False, unique=True)
     image = models.ImageField(upload_to='uploads/')
     date = models.DateField(auto_now=True)
+    active_choices = [
+    ("ACTIVE", "Active"),
+    ("SOLD", "Sold"),
+]
+    choices = models.CharField(max_length=20, choices=active_choices, blank=False)
 
     def __str__(self):
         return self.title

@@ -23,4 +23,5 @@ class SerieSerializer(serializers.ModelSerializer):
             'get_absolute_url',
             'slug',
             'tokens',
+            'choices'
         ]
