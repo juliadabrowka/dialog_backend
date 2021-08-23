@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,8 +40,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'corsheaders',
-    'collage_app',
-    'django_heroku'
+    'collage_app'
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -86,8 +84,12 @@ WSGI_APPLICATION = 'collage.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'collage',
+        'USER': 'julia',
+        'PASSWORD' : 'kosmo2019!',
+        'HOST': '127.0.0.1',
+        'PORT': '5432'
     }
 }
 
@@ -142,4 +144,3 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-django_heroku.settings(locals())

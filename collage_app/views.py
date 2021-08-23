@@ -12,20 +12,13 @@ from .models import Token, Serie
 
 class TokenList(APIView):
     def get(self, request, format=None):
-        token = Token.objects.all().order_by('?')
+        token = Token.objects.filter(serie__choices="SOLD").order_by('?')
         serializer =  TokenSerializer(token, many=True)
         return Response(serializer.data)
 
 
-class SerieList(APIView):
-    def get(self, request, format=None):
-        series = Serie.objects.all()
-        serializer = SerieSerializer(series, many=True)
-        return Response(serializer.data)
-
-
 class SeriedToken(ModelViewSet):
-    queryset = Serie.objects.all()
+    queryset = Serie.objects.filter(choices='SOLD')
     serializer_class = SerieSerializer
 
     def get_queryset(self):
