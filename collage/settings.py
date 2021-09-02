@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-076@u3uyx%o88bl#44r(2uo$4u2$)=wir8-50b-lq7zw5$1r*0'
+SECRET_KEY = os.getenv('DJANGO_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -44,7 +48,7 @@ INSTALLED_APPS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8080", "http://127.0.0.1:8000"
+    "http://localhost:8080", "http://127.0.0.1:8000", "http://192.168.41.41:8080"
 ]
 
 MIDDLEWARE = [
@@ -86,8 +90,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'collage',
-        'USER': 'julia',
-        'PASSWORD' : 'kosmo2019!',
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD' : os.getenv('DATA_BASE_PWDR'),
         'HOST': '127.0.0.1',
         'PORT': '5432'
     }
