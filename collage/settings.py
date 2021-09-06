@@ -14,9 +14,7 @@ from pathlib import Path
 import os
 
 from dotenv import load_dotenv
-
-dotenv_path = Path('collage/.env') 
-load_dotenv(dotenv_path = dotenv_path)
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -92,12 +90,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'collage',
         'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD' : os.getenv('DATA_BASE_PWDR'),
-        'HOST': '127.0.0.1',
+        'PASSWORD' : os.getenv('DATABASE_PASS'),
+        'HOST': 'localhost',
         'PORT': '5432'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
