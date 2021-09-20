@@ -46,6 +46,10 @@ INSTALLED_APPS = [
     'collage_app'
 ]
 
+ALLOWED_HOSTS =[
+    '0.0.0.0', '192.168.41.41'
+]
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080", "http://127.0.0.1:8000", "http://192.168.41.41:8080"
 ]
