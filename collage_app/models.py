@@ -21,7 +21,7 @@ class Serie(models.Model):
         return f'/serie/{self.slug}/'
 
     def get_image(self):
-            return 'http://127.0.0.1:8000' + self.image.url
+            return 'http://192.168.41.41:8000' + self.image.url
 
 
 class Token(models.Model):
@@ -33,4 +33,4 @@ class Token(models.Model):
     date = models.DateField(auto_now=True)
 
     def get_image(self):
-            return 'http://127.0.0.1:8000' + self.image.url
+            return 'http://192.168.41.41:8000' + self.image.url
