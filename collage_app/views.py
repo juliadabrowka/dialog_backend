@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.status import HTTP_404_NOT_FOUND
+import time
 
 
 from .serializers import TokenSerializer, SerieSerializer
@@ -13,6 +14,7 @@ from .models import Token, Serie
 class TokenList(APIView):
     def get(self, request, format=None):
         token = Token.objects.filter(serie__choices="SOLD").order_by('?')
+        time.sleep(10)
         serializer =  TokenSerializer(token, many=True)
         return Response(serializer.data)
 
